@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>{{ product.name }}</h1>
+    <a href="/">Home</a> |
+    <a href="/basket">View Basket</a>
+</header>
+
+<div class="product-page">
+    <div class="product-images">
+        <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+        <img src="{{ url_for('static', filename='images/' + second_image) }}" alt="{{ product.name }}">
+    </div>
+
+    <div class="product-details">
+        <h2>Product Details</h2>
+        <p>{{ detailed_description }}</p>
+        <p><strong>Price: £{{ product.price }}</strong></p>
+        <p>Environmental Impact: {{ product.impact }} kg CO₂</p>
+
+        <form action="{{ url_for('add_to_basket', id=product.id) }}" method="POST">
+            <label>Quantity:</label>
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="submit">Add to Basket</button>
+        </form>
+    </div>
+</div>
+
+<br>
+<a href="/">Back to Shop</a>
+
+</body>
+</html>

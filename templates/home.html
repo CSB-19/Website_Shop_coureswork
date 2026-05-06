@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Luxury Limited Edition Pens</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Luxury Limited Edition Fountain Pens</h1>
+    <a href="/">Home</a> |
+    <a href="/basket">View Basket</a>
+</header>
+
+<p>Sort by:
+    <a href="{{ url_for('home', sort='name') }}">Name</a> |
+    <a href="{{ url_for('home', sort='price') }}">Price</a> |
+    <a href="{{ url_for('home', sort='impact') }}">Environmental Impact</a>
+</p>
+
+<div class="product-container">
+{% for product in products %}
+    <div class="product-card" onmouseenter="showInfo({{ product.id }})" onmouseleave="hideInfo({{ product.id }})">
+        <a href="/product/{{ product.id }}">
+            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+        </a>
+
+        <a href="/product/{{ product.id }}">
+            <h2>{{ product.name }}</h2>
+        </a>
+
+        <p>{{ product.description }}</p>
+        <p><strong>Price: £{{ product.price }}</strong></p>
+        <p>Environmental Impact: {{ product.impact }} kg CO₂</p>
+
+        <div class="hover-info" id="info-{{ product.id }}"></div>
+
+        <form action="{{ url_for('add_to_basket', id=product.id) }}" method="POST">
+            <label>Quantity:</label>
+            <input type="number" name="quantity" value="1" min="1">
+            <button type="submit">Add to Basket</button>
+        </form>
+    </div>
+{% endfor %}
+</div>
+
+<script>
+function showInfo(id) {
+    fetch("/product_info/" + id)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("info-" + id).style.display = "block";
+            document.getElementById("info-" + id).innerHTML =
+                "<p><strong>More details:</strong></p>" +
+                "<p>" + data.description + "</p>";
+        });
+}
+
+function hideInfo(id) {
+    document.getElementById("info-" + id).style.display = "none";
+}
+</script>
+
+</body>
+</html>

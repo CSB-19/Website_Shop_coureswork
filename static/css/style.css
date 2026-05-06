@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header a {
+    color: white;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 30px;
+}
+
+.product-card {
+    position: relative;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.product-page {
+    background: white;
+    margin: 30px;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-images img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+}
+
+.product-details {
+    max-width: 600px;
+}
+
+table {
+    background: white;
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+th {
+    background: #eeeeee;
+}
+
+td,
+th {
+    padding: 10px;
+}
+
+form {
+    margin-top: 15px;
+}
+
+.hover-info {
+    display: none;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: 15px;
+    background: #eeeeee;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    text-align: left;
+    z-index: 2;
+}

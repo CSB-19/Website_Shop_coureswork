@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Checkout</h1>
+    <a href="/">Home</a> |
+    <a href="/basket">Back to Basket</a>
+</header>
+
+{% if errors %}
+<ul style="color:red;">
+    {% for error in errors %}
+        <li>{{ error }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h3>Items in Basket:</h3>
+<ul>
+    {% for item in products %}
+        <li>{{ item.product.name }} - Quantity: {{ item.quantity }} - Subtotal: £{{ item.subtotal }}</li>
+    {% endfor %}
+</ul>
+
+<p><strong>Total: £{{ total }}</strong></p>
+
+<form method="POST">
+    <label>Name on Card:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Card Number:</label><br>
+    <input type="text" name="card_number" placeholder="1234 5678 9012 3456" required><br><br>
+
+    <label>Expiry Date (MM/YY):</label><br>
+    <input type="text" name="expiry" placeholder="MM/YY" required><br><br>
+
+    <label>CVV:</label><br>
+    <input type="text" name="cvv" placeholder="123" required><br><br>
+
+    <button type="submit">Pay £{{ total }}</button>
+</form>
+
+</body>
+</html>

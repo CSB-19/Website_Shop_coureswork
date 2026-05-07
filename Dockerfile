@@ -29,7 +29,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # - static/
 # - instance/ (for SQLite database)
 # ============================================================
-COPY ./app /usr/src/app
+COPY . /usr/src/app
 
 
 # ============================================================
